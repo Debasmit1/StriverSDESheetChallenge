@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/set-matrix-zeroes/description/
 
-//1
+//No Taking any extra space
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
@@ -35,6 +35,34 @@ public:
         if(zCol){
             for(int i=0;i<row;i++){
                 matrix[i][0]=0;
+            }
+        }
+    }
+};
+
+// Taking extra space
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int row(matrix.size()),col(matrix[0].size());
+
+        vector<int>rVec(row,-1),cVec(col,-1);
+
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(!matrix[i][j]){
+                    rVec[i]=0;
+                    cVec[j]=0;
+                }
+            }
+        }
+
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(!rVec[i] || !cVec[j]){
+                    matrix[i][j]=0;
+                }
             }
         }
     }
