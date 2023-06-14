@@ -32,3 +32,35 @@ public:
         return head;
     }
 };
+
+// Updated Solution
+
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(!head || !head->next)return head;
+
+        int cnt(1);
+        ListNode *cur=head;
+
+        while(cur->next){
+            cur=cur->next;
+            cnt++;
+        }
+        ListNode *tail=cur;
+
+        k=k%cnt;
+        cnt-=k;
+        int i=1;
+        cur=head;
+
+        while(i++<cnt){
+            cur=cur->next;
+        }
+        tail->next=head;
+        head=cur->next;
+        cur->next=NULL;
+
+        return head;
+    }
+};
